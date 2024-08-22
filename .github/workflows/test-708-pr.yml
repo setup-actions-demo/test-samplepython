@@ -19,7 +19,9 @@ jobs:
         uses: priya-kinthali/setup-python@test-708
         with:
           python-version: ${{ matrix.python-version }}
-          cache: 'pip'
+          cache: 'pip'  
+        env:
+          AGENT_TOOLSDIRECTORY: /Users/lakshmipriya/hostedtoolcache
       - name: Check Python version
         run: python --version
       - name: Install dependencies
