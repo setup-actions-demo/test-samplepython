@@ -26,13 +26,16 @@ jobs:
           echo "Running inside Docker container:"
           cat /etc/os-release
           docker --version
+      - name: Set PIP_ROOT_USER_ACTION
+        run: docker exec -it ubuntu:20.04 bash -c "export PIP_ROOT_USER_ACTION=ignore"
+
       - name: fix pip issue
         run: mkdir -p /github/home/.cache/pip
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11.5"
+          python-version: "3.11.4"
           cache: 'pip'
           cache-dependency-path: 'requirements.txt'
       
