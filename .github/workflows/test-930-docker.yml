@@ -23,7 +23,7 @@ jobs:
           apt-get install -y lsb-release
       - name: Run Docker Container
         run: |
-          docker run -d --name my_container ubuntu:20.04 sleep infinity
+          docker run -d --name Ubuntu -e PIP_ROOT_USER_ACTION=ignore ubuntu:20.04 sleep infinity
 
       
       - name: Check Docker Container
@@ -31,9 +31,7 @@ jobs:
           echo "Running inside Docker container:"
           cat /etc/os-release
           docker --version
-      - name: Set PIP_ROOT_USER_ACTION
-        run: docker exec -it my_container bash -c "export PIP_ROOT_USER_ACTION=ignore"
-
+    
       - name: fix pip issue
         run: mkdir -p /github/home/.cache/pip
 
