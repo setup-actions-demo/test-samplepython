@@ -31,15 +31,17 @@ jobs:
       - name: fix pip issue
         run: mkdir -p /github/home/.cache/pip
 
+      - name: Create .env file
+        run: echo "PIP_ROOT_USER_ACTION=ignore" > .env
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11.7"
+          python-version: "3.11.8"
           cache: 'pip'
           cache-dependency-path: 'requirements.txt'
-          update-environment: true
         env:
-          PIP_ROOT_USER_ACTION: ignore
+            PIP_ROOT_USER_ACTION: ignore
       
       - name: Echo PIP_ROOT_USER_ACTION
         run: echo "Value of PIP_ROOT_USER_ACTION is $PIP_ROOT_USER_ACTION"
