@@ -12,7 +12,7 @@ jobs:
     # container: ubuntu:20.04
     container:
       image: ubuntu:20.04
-      options: --env PIP_ROOT_USER_ACTION=ignore  # Add the environment variable here
+      # options: --env PIP_ROOT_USER_ACTION=ignore  # Add the environment variable here
 
     steps:
 
@@ -37,7 +37,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12.4"
+          python-version: "3.12.5"
           cache: 'pip'
           cache-dependency-path: 'requirements.txt'
       
