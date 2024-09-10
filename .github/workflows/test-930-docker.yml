@@ -34,6 +34,8 @@ jobs:
       - name: Create .env file
         run: echo "export PIP_ROOT_USER_ACTION=ignore" >> ~/.bashrc
       
+      - name: Clear pip cache
+        run: python -m pip cache purge
 
       - name: Setup Python
         uses: actions/setup-python@v5
