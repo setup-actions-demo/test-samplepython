@@ -39,7 +39,7 @@ jobs:
         run: |
           if ! command -v sudo &> /dev/null; then
             echo "sudo could not be found. Installing..."
-            sudo apt-get update && sudo apt-get install -y sudo
+            apt-get update && apt-get install -y sudo
           fi
       - name: Change ownership of /github/home
         run: sudo chown -R $(whoami) /github/home
