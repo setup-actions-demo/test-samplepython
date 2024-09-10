@@ -27,6 +27,9 @@ jobs:
           echo "Running inside Docker container:"
           cat /etc/os-release
           docker --version
+      - name: Install sudo
+        run: apt-get update && apt-get install -y sudo
+
       - name: Remove previous Python versions
         run: |
           sudo rm -rf /usr/local/lib/python*
