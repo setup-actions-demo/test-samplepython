@@ -33,10 +33,7 @@ jobs:
 
       - name: Create .env file
         run: echo "export PIP_ROOT_USER_ACTION=ignore" >> ~/.bashrc
-      - name: Remove cache
-        run: |
-          mv "${{ runner.tool_cache }}" "${{ runner.tool_cache }}.old"
-          mkdir -p "${{ runner.tool_cache }}"
+      
 
       - name: Setup Python
         uses: actions/setup-python@v5
