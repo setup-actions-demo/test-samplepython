@@ -39,7 +39,7 @@ jobs:
           cache-dependency-path: 'requirements.txt'
         env:
             PIP_ROOT_USER_ACTION: ignore
-            PIP_USER: 1
+            
       
       - name: Echo PIP_ROOT_USER_ACTION
         run: echo "Value of PIP_ROOT_USER_ACTION is $PIP_ROOT_USER_ACTION"
