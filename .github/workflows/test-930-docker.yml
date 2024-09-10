@@ -21,9 +21,7 @@ jobs:
         run: |
           apt-get update
           apt-get install -y lsb-release
-      - name: Run Docker Container
-        run: |
-          docker run -d --name ubuntutest -e PIP_ROOT_USER_ACTION=ignore ubuntu:20.04 sleep infinity
+
       - name: Check Docker Container
         run: |
           echo "Running inside Docker container:"
@@ -39,6 +37,9 @@ jobs:
           python-version: "3.11.6"
           cache: 'pip'
           cache-dependency-path: 'requirements.txt'
+          update-environment: true
+        env:
+          PIP_ROOT_USER_ACTION: ignore
       
       - name: Echo PIP_ROOT_USER_ACTION
         run: echo "Value of PIP_ROOT_USER_ACTION is $PIP_ROOT_USER_ACTION"
