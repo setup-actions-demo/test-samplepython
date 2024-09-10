@@ -21,7 +21,6 @@ jobs:
         run: |
           apt-get update
           apt-get install -y lsb-release
-
       - name: Check Docker Container
         run: |
           echo "Running inside Docker container:"
@@ -34,12 +33,9 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11.9"
+          python-version: "3.11.10"
           cache: 'pip'
           cache-dependency-path: 'requirements.txt'
-        env:
-            PIP_ROOT_USER_ACTION: ignore
-            
       
       - name: Echo PIP_ROOT_USER_ACTION
         run: echo "Value of PIP_ROOT_USER_ACTION is $PIP_ROOT_USER_ACTION"
@@ -54,4 +50,3 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-         
