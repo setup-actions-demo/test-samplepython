@@ -1,9 +1,9 @@
 name: PIP_ROOT_USER_ACTION ignored 
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   workflow_dispatch:
 
 jobs:
@@ -18,8 +18,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11.5"
-      - name: Print environment variables
-        run: env
       - name: Print environment variables
         run: env
       - name: Install dependencies
