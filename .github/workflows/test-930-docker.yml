@@ -15,6 +15,12 @@ jobs:
     #   options: --name UbuntuCont
     #   env:
     #     PIP_ROOT_USER_ACTION: ignore
+    services:
+      UbuntuCont:
+        image: ubuntu:20.04
+        env:
+          PIP_ROOT_USER_ACTION: ignore
+    container: UbuntuCont
     steps:
 
       - uses: actions/checkout@v4
