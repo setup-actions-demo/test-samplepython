@@ -11,20 +11,13 @@ jobs:
     runs-on: [self-hosted]
     steps:
 
-      - name: Ensure Sudo is Installed
-        run: |
-          if ! command -v sudo &> /dev/null; then
-            echo "sudo could not be found. Installing..."
-            apt-get update && apt-get install -y sudo
-          fi
-      - name: Force delete directory
-        run: sudo rm -rf /home/azureuser/actions-runner/_work/test-samplepython/test-samplepython/.github/workflows
+
       - uses: actions/checkout@v4
      
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11.5"
+          python-version: "3.11.6"
       - name: Print environment variables
         run: env
       - name: Install dependencies
