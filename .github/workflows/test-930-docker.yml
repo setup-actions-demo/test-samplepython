@@ -33,8 +33,8 @@ jobs:
           cat /etc/os-release
           docker --version
     
-      - name: fix pip issue
-        run: mkdir -p /github/home/.cache/pip
+      # - name: fix pip issue
+      #   run: mkdir -p /github/home/.cache/pip
 
       # - name: Run Docker with Environment Variable
       #   run: |
