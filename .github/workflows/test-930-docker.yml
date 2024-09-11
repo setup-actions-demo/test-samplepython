@@ -10,17 +10,12 @@ jobs:
   build:
     runs-on: [self-hosted]
     # container: ubuntu:20.04
-    # container:
-    #   image: ubuntu:20.04
+    container:
+      image: ubuntu:20.04
     #   options: --name UbuntuCont
-    #   env:
-    #     PIP_ROOT_USER_ACTION: ignore
-    services:
-      UbuntuCont:
-        image: ubuntu:20.04
-        env:
-          PIP_ROOT_USER_ACTION: ignore
-    container: service:UbuntuCont
+      env:
+        PIP_ROOT_USER_ACTION: ignore
+    
     steps:
 
       - uses: actions/checkout@v4
@@ -33,6 +28,9 @@ jobs:
       #   run: |
       #     apt-get update
       #     apt-get install -y lsb-release
+      - name: Run Docker command
+        run: |
+          docker run -d -e PIP_ROOT_USER_ACTION=ignore --name UbuntuCont ubuntu:20.04 tail -f /dev/null
       - name: Check Docker Container
         run: |
           echo "Running inside Docker container:"
