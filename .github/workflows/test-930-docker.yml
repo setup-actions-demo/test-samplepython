@@ -28,9 +28,12 @@ jobs:
       #   run: |
       #     apt-get update
       #     apt-get install -y lsb-release
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
       - name: Run Docker command
         run: |
-          docker run -d -e PIP_ROOT_USER_ACTION=ignore --name UbuntuCont ubuntu:20.04 tail -f /dev/null
+          docker run -d -e PIP_ROOT_USER_ACTION=ignore ubuntu:20.04 tail -f /dev/null
       - name: Check Docker Container
         run: |
           echo "Running inside Docker container:"
