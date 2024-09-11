@@ -32,6 +32,8 @@ jobs:
           echo "Running inside Docker container:"
           cat /etc/os-release
           docker --version
+      - name: Print environment variables
+        run: env
     
       # - name: fix pip issue
       #   run: mkdir -p /github/home/.cache/pip
