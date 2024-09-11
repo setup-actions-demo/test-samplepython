@@ -56,7 +56,7 @@ jobs:
           cache: 'pip'
           cache-dependency-path: 'requirements.txt'
         env:
-          PIP_NO_WARN_SCRIPT_LOCATION: 0
+          PIP_ROOT_USER_ACTION: ignore
       - name: Print environment variables
         run: env
       
