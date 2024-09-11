@@ -33,11 +33,11 @@ jobs:
       # - name: Run Docker command
       #   run: |
       #     docker run -d -e PIP_ROOT_USER_ACTION=ignore ubuntu:20.04 tail -f /dev/null
-      - name: Check Docker Container
-        run: |
-          echo "Running inside Docker container:"
-          cat /etc/os-release
-          docker --version
+      # - name: Check Docker Container
+      #   run: |
+      #     echo "Running inside Docker container:"
+      #     cat /etc/os-release
+      #     docker --version
       - name: Print environment variables
         run: env
     
