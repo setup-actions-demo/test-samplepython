@@ -47,7 +47,7 @@ jobs:
 
       - name: Run Docker with Environment Variable
         run: |
-          docker run -e PIP_ROOT_USER_ACTION=ignore ubuntu:20.04 /bin/bash
+          /usr/bin/docker exec -e PIP_ROOT_USER_ACTION=ignore ubuntu:20.04 sh -c "cat /etc/*release | grep ^ID"
       # docker run -e PIP_ROOT_USER_ACTION=ignore ubuntu:20.04 env | grep PIP_ROOT_USER_ACTION
       # - name: Install sudo
       #   run: |
