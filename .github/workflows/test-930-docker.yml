@@ -45,9 +45,10 @@ jobs:
       - name: fix pip issue
         run: mkdir -p /github/home/.cache/pip
 
-      # - name: Run Docker with Environment Variable
-      #   run: |
-      #     docker run -e PIP_ROOT_USER_ACTION=ignore ubuntu:20.04 env | grep PIP_ROOT_USER_ACTION
+      - name: Run Docker with Environment Variable
+        run: |
+          docker run -it -e PIP_ROOT_USER_ACTION=ignore ubuntu:20.04 /bin/bash
+      # docker run -e PIP_ROOT_USER_ACTION=ignore ubuntu:20.04 env | grep PIP_ROOT_USER_ACTION
       # - name: Install sudo
       #   run: |
       #     apt-get update
@@ -63,27 +64,8 @@ jobs:
       #     source .env
       #     set +a
       #   # This step reads the .env file and sets environment variables for subsequent steps.
-      - name: Setup Environment Variable
-        shell: bash
-        run: |
-          # Create a script that sets the environment variable
-          echo 'export PIP_ROOT_USER_ACTION=ignore' > /workspace/set_env.sh
-          chmod +x /workspace/set_env.sh
 
-      - name: Run Setup Python with Docker
-        shell: bash
-        run: |
-          # Run Docker with the environment variable script
-          docker run --rm \
-            -v ${{ github.workspace }}:/workspace \
-            -w /workspace \
-            ubuntu:20.04 /bin/bash -c "
-              source /workspace/set_env.sh && \
-              echo 'Environment variable set:' && \
-              echo \$PIP_ROOT_USER_ACTION && \
-              # Placeholder for the actual setup-python step
-              # You can add commands here if needed
-            "
+   
 
       - name: Setup Python
         uses: priya-kinthali/setup-python@test-930
