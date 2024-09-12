@@ -59,11 +59,17 @@ jobs:
       - name: Setup Python
         uses: priya-kinthali/setup-python@test-930
         with:
-          python-version: "3.11.2"
+          python-version: "3.11.1"
           cache: 'pip'
           cache-dependency-path: 'requirements.txt'
         # env:
         #   PIP_ROOT_USER_ACTION: ignore
+      - name: Print Python and Pip Configuration
+        run: |
+          python --version
+          pip --version
+          pip config list
+          env | grep PIP_ROOT_USER_ACTION
       - name: Print environment variables
         run: env
       
@@ -77,6 +83,8 @@ jobs:
           key: ${{ runner.os }}-venv1-${{ hashFiles('**/requirements.txt') }}
 
       - name: Install dependencies
+        env:
+            PIP_ROOT_USER_ACTION: ignore
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
