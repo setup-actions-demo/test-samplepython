@@ -1,9 +1,9 @@
 name: PIP_ROOT_USER_ACTION ignored 
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   workflow_dispatch:
 # env:
 #   PIP_ROOT_USER_ACTION: ignore
@@ -20,10 +20,10 @@ jobs:
     steps:
 
       - uses: actions/checkout@v4
-      # - name: Install Docker
-      #   run: |
-      #     apt-get update
-      #     apt-get install -y docker.io
+      - name: Install Docker
+        run: |
+          apt-get update
+          apt-get install -y docker.io
       
       - name: Install lsb-release
         run: |
