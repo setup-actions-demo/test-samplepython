@@ -16,7 +16,7 @@ jobs:
     services:
       my-ubuntu-service:
         image: ubuntu:20.04
-        options: --name my-ubuntu-container
+        options: --name my-test-container
     #   options: --name UbuntuCont
       # env:
       #   PIP_ROOT_USER_ACTION: ignore
