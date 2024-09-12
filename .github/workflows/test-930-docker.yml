@@ -56,10 +56,17 @@ jobs:
       #   run: |
       #     sudo rm -rf /__w/_tool/Python/3.11.6/x64/bin/pip
      
+      - name: Set environment variables from .env file
+        run: |
+          set -a
+          source .env
+          set +a
+        # This step reads the .env file and sets environment variables for subsequent steps.
+
       - name: Setup Python
         uses: priya-kinthali/setup-python@test-930
         with:
-          python-version: "3.11.0"
+          python-version: "3.10.15"
           cache: 'pip'
           cache-dependency-path: 'requirements.txt'
         # env:
