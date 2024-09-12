@@ -42,8 +42,8 @@ jobs:
       - name: Print environment variables
         run: env
     
-      # - name: fix pip issue
-      #   run: mkdir -p /github/home/.cache/pip
+      - name: fix pip issue
+        run: mkdir -p /github/home/.cache/pip
 
       # - name: Run Docker with Environment Variable
       #   run: |
