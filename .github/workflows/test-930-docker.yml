@@ -11,12 +11,9 @@ jobs:
   build:
     runs-on: [self-hosted]
     # container: ubuntu:20.04
-    # container:
-    #   image: ubuntu:20.04
-    services:
-      my-ubuntu-service:
-        image: ubuntu:20.04
-        options: --name my-test-container
+    container:
+      image: ubuntu:20.04
+
     #   options: --name UbuntuCont
       # env:
       #   PIP_ROOT_USER_ACTION: ignore
