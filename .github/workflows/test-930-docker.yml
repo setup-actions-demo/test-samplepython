@@ -48,10 +48,13 @@ jobs:
       # - name: Run Docker with Environment Variable
       #   run: |
       #     docker run -e PIP_ROOT_USER_ACTION=ignore ubuntu:20.04 env | grep PIP_ROOT_USER_ACTION
-      # - name: Move tool cache
-      #   run: |
-      #     mv "${{ runner.tool_cache }}" "${{ runner.tool_cache }}.old"
-      #     mkdir -p "${{ runner.tool_cache }}"
+      - name: Install sudo
+        run: |
+          apt-get update
+          apt-get install -y sudo
+      - name: Remove specific Python cache directory
+        run: |
+          sudo rm -rf /__w/_tool/Python/3.11.6/x64/bin/pip
      
       - name: Setup Python
         uses: priya-kinthali/setup-python@test-930
