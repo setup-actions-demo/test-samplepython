@@ -57,6 +57,7 @@ jobs:
       #     sudo rm -rf /__w/_tool/Python/3.11.6/x64/bin/pip
      
       - name: Set environment variables from .env file
+        shell: bash
         run: |
           set -a
           source .env
