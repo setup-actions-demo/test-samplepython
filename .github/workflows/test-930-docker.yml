@@ -1,9 +1,9 @@
 name: PIP_ROOT_USER_ACTION ignored 
 
 on:
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
 env:
   PIP_ROOT_USER_ACTION: ignore
@@ -51,9 +51,9 @@ jobs:
     
      
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: priya-kinthali/setup-python@test-930
         with:
-          python-version: "3.7.16"
+          python-version: "3.11.6"
           cache: 'pip'
           cache-dependency-path: 'requirements.txt'
         env:
