@@ -14,13 +14,15 @@ jobs:
         python: [3.12.6]
     steps:
       - uses: actions/checkout@v4
+      - name: Install Docker
+        run: |
+          apt-get update
+          apt-get install -y docker.io
       - name: Install lsb-release
         run: |
           apt-get update
           apt-get install -y lsb-release
-      - name: Debug Environment
-        run: |
-          echo "PIP_ROOT_USER_ACTION is $PIP_ROOT_USER_ACTION"
+
       - name: fix pip issue
         run: mkdir -p /github/home/.cache/pip
 
