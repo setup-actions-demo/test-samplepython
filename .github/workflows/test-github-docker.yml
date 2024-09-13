@@ -21,9 +21,12 @@ jobs:
       - name: fix pip issue
         run: mkdir -p /github/home/.cache/pip
 
+      - name: Debug Container
+        run: |
+          export PIP_ROOT_USER_ACTION=ignore
+          echo "PIP_ROOT_USER_ACTION is $PIP_ROOT_USER_ACTION"
+          pip --version
       - name: Setup Python
-        env:
-          PIP_ROOT_USER_ACTION: ignore  # Suppress pip root user warning
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
