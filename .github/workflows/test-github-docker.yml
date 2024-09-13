@@ -46,13 +46,13 @@ jobs:
           /usr/bin/docker exec ${{ env.container_id }} sh -c "echo 'PIP_ROOT_USER_ACTION: ' \$PIP_ROOT_USER_ACTION"
           
       - name: Setup Python
-        uses: priya-kinthali/setup-python@test-930
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
           cache: 'pip'
           cache-dependency-path: 'requirements.txt'
-        # env:
-        #   PIP_ROOT_USER_ACTION: ignore
+        env:
+          PIP_ROOT_USER_ACTION: ignore
 
       
       - name: Verify PIP_ROOT_USER_ACTION in Docker
