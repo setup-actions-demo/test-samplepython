@@ -38,12 +38,12 @@ jobs:
           
       - name: Set PIP_ROOT_USER_ACTION in Docker
         run: |
-          /usr/bin/docker exec -e PIP_ROOT_USER_ACTION=ignore ${container_id} sh -c "echo 'PIP_ROOT_USER_ACTION: ' \$PIP_ROOT_USER_ACTION"
+          /usr/bin/docker exec -e PIP_ROOT_USER_ACTION=ignore ${{ env.container_id }} sh -c "echo 'PIP_ROOT_USER_ACTION: ' \$PIP_ROOT_USER_ACTION"
       
       - name: Show Container ID and Environment Variable
         run: |
-          echo "Container ID used: ${container_id}"
-          /usr/bin/docker exec ${container_id} sh -c "echo 'PIP_ROOT_USER_ACTION: ' \$PIP_ROOT_USER_ACTION"
+          echo "Container ID used: ${{ env.container_id }}"
+          /usr/bin/docker exec ${{ env.container_id }} sh -c "echo 'PIP_ROOT_USER_ACTION: ' \$PIP_ROOT_USER_ACTION"
           
       - name: Setup Python
         uses: priya-kinthali/setup-python@test-930
