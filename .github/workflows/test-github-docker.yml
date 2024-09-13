@@ -34,7 +34,7 @@ jobs:
       - name: Set PIP_ROOT_USER_ACTION
         run: |
           echo "export PIP_ROOT_USER_ACTION=ignore" >> /etc/profile
-          source /etc/profile
+        shell: bash
           
       - name: Setup Python
         uses: actions/setup-python@v5
