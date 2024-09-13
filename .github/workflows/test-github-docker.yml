@@ -28,13 +28,13 @@ jobs:
 
       - name: fix pip issue
         run: mkdir -p /github/home/.cache/pip
-      - name: Access release information
+      - name: Get container ID
+        id: get_container_id
+        run: echo "::set-output name=container_id::$(docker ps -q -f ancestor=ubuntu:22.04)"
+      - name: Set PIP_ROOT_USER_ACTION in Docker
         run: |
-          cat /etc/*release | grep '^ID='
-      - name: Set PIP_ROOT_USER_ACTION
-        run: |
-          echo "export PIP_ROOT_USER_ACTION=ignore" >> /etc/profile
-        shell: bash
+          /usr/bin/docker exec -e PIP_ROOT_USER_ACTION=ignore ${{ steps.get_container_id.outputs.container_id }} sh -c "echo 'export PIP_ROOT_USER_ACTION=ignore' >> /etc/profile"
+
           
       - name: Setup Python
         uses: actions/setup-python@v5
