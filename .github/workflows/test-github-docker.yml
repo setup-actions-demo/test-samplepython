@@ -8,6 +8,8 @@ jobs:
   test1:
     runs-on: ubuntu-latest
     container: ubuntu:22.04
+    env:
+      PIP_ROOT_USER_ACTION: ignore
     
     strategy:
       matrix:
