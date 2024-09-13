@@ -30,11 +30,17 @@ jobs:
         run: mkdir -p /github/home/.cache/pip
       - name: Get container ID
         id: get_container_id
-        run: echo "::set-output name=container_id::$(docker ps -q -f ancestor=ubuntu:22.04)"
+        run: |
+          container_id=$(docker ps -q -f ancestor=ubuntu:22.04)
+          echo "Container ID: $container_id"
+          echo "container_id=$container_id" >> $GITHUB_ENV
+          
       - name: Set PIP_ROOT_USER_ACTION in Docker
         run: |
-          /usr/bin/docker exec -e PIP_ROOT_USER_ACTION=ignore ${{ steps.get_container_id.outputs.container_id }} sh -c "echo 'export PIP_ROOT_USER_ACTION=ignore' >> /etc/profile"
-
+          /usr/bin/docker exec -e PIP_ROOT_USER_ACTION=ignore ${{ env.container_id }} sh -c "echo 'export PIP_ROOT_USER_ACTION=ignore' >> /etc/profile"
+      - name: Verify PIP_ROOT_USER_ACTION in Docker
+        run: |
+          /usr/bin/docker exec ${{ env.container_id }} sh -c "echo 'PIP_ROOT_USER_ACTION: ' \$PIP_ROOT_USER_ACTION"
           
       - name: Setup Python
         uses: actions/setup-python@v5
