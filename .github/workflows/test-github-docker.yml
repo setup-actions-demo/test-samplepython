@@ -31,7 +31,7 @@ jobs:
       - name: Get container ID
         id: get_container_id
         run: |
-          container_id=$(docker ps -q -f ancestor=ubuntu:22.04)
+          container_id=$(docker ps -q -f ancestor=ubuntu:20.04)
           full_container_id=$(docker inspect --format="{{.Id}}" $container_id)
           echo "Container ID: $full_container_id"
           echo "container_id=$full_container_id" >> $GITHUB_ENV
