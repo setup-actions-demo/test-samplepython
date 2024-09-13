@@ -32,15 +32,22 @@ jobs:
         id: get_container_id
         run: |
           container_id=$(docker ps -q -f ancestor=ubuntu:22.04)
-          echo "Container ID: $container_id"
-          echo "container_id=$container_id" >> $GITHUB_ENV
+          full_container_id=$(docker inspect --format="{{.Id}}" $container_id)
+          echo "Container ID: $full_container_id"
+          echo "container_id=$full_container_id" >> $GITHUB_ENV
           
       - name: Set PIP_ROOT_USER_ACTION in Docker
         run: |
-          /usr/bin/docker exec -e PIP_ROOT_USER_ACTION=ignore ${{ env.container_id }} sh -c "echo 'export PIP_ROOT_USER_ACTION=ignore' >> /etc/profile"
+          /usr/bin/docker exec -e PIP_ROOT_USER_ACTION=ignore ${container_id} sh -c "echo 'export PIP_ROOT_USER_ACTION=ignore' >> /etc/profile"
+      
       - name: Verify PIP_ROOT_USER_ACTION in Docker
         run: |
-          /usr/bin/docker exec ${{ env.container_id }} sh -c "echo 'PIP_ROOT_USER_ACTION: ' \$PIP_ROOT_USER_ACTION"
+          /usr/bin/docker exec ${container_id} sh -c "echo 'PIP_ROOT_USER_ACTION: ' \$PIP_ROOT_USER_ACTION"
+          
+      - name: Show Container ID and Release Info
+        run: |
+          echo "Container ID used: ${container_id}"
+          /usr/bin/docker exec ${container_id} sh -c "cat /etc/*release | grep ^ID"
           
       - name: Setup Python
         uses: actions/setup-python@v5
