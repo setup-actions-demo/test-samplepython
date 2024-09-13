@@ -33,8 +33,8 @@ jobs:
           cat /etc/*release | grep '^ID='
       - name: Set PIP_ROOT_USER_ACTION
         run: |
-          export PIP_ROOT_USER_ACTION=ignore
-          echo "PIP_ROOT_USER_ACTION=ignore" >> /etc/environment
+          echo "export PIP_ROOT_USER_ACTION=ignore" >> /etc/profile
+          source /etc/profile
           
       - name: Setup Python
         uses: actions/setup-python@v5
