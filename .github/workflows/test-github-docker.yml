@@ -7,7 +7,10 @@ on:
 jobs:
   test1:
     runs-on: ubuntu-latest
-    container: ubuntu:22.04
+    container:
+      image: ubuntu:22.04
+      env:
+        PIP_ROOT_USER_ACTION: ignore
     
     strategy:
       matrix:
@@ -25,12 +28,6 @@ jobs:
 
       - name: fix pip issue
         run: mkdir -p /github/home/.cache/pip
-
-      - name: Debug Container Environment
-        run: |
-          docker exec -it $DOCKER_CONTAINER_ID env | grep PIP_ROOT_USER_ACTION
-        env:
-          DOCKER_CONTAINER_ID: ${{ steps.setup-python.outputs.docker-container-id }}
           
       - name: Setup Python
         uses: actions/setup-python@v5
