@@ -8,7 +8,7 @@ jobs:
   test1:
     runs-on: ubuntu-latest
     container:
-      image: ubuntu:22.04
+      image: ubuntu:18.04
       env:
         PIP_ROOT_USER_ACTION: ignore
     
@@ -64,14 +64,6 @@ jobs:
           echo "Container ID used: ${container_id}"
           /usr/bin/docker exec ${container_id} sh -c "cat /etc/*release | grep ^ID"
           
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        env:
-          PIP_ROOT_USER_ACTION: ignore
-        with:
-          python-version: ${{ matrix.python }}
-          cache: 'pip'
-          cache-dependency-path: 'requirements.txt'
 
   test2:
     runs-on: ubuntu-latest
