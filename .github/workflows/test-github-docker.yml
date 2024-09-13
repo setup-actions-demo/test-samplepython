@@ -30,7 +30,11 @@ jobs:
         run: mkdir -p /github/home/.cache/pip
       - name: Access release information
         run: |
-          cat /etc/*release | grep ^ID
+          cat /etc/*release | grep '^ID='
+      - name: Set PIP_ROOT_USER_ACTION
+        run: |
+          export PIP_ROOT_USER_ACTION=ignore
+          echo "PIP_ROOT_USER_ACTION=ignore" >> /etc/environment
           
       - name: Setup Python
         uses: actions/setup-python@v5
