@@ -1,9 +1,9 @@
 name: PIP_ROOT_USER_ACTION ignored 
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   workflow_dispatch:
 # env:
 #   PIP_ROOT_USER_ACTION: ignore
@@ -46,9 +46,7 @@ jobs:
       - name: fix pip issue
         run: mkdir -p /github/home/.cache/pip
 
-      - name: Run Docker with Environment Variable
-        run: |
-          /usr/bin/docker exec -e PIP_ROOT_USER_ACTION=ignore ubuntu:20.04 sh -c "cat /etc/*release | grep ^ID"
+      
       # docker run -e PIP_ROOT_USER_ACTION=ignore ubuntu:20.04 env | grep PIP_ROOT_USER_ACTION
       # - name: Install sudo
       #   run: |
