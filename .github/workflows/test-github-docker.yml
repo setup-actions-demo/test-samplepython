@@ -20,12 +20,14 @@ jobs:
         run: |
           apt-get update
           apt-get install -y lsb-release
+      - name: Debug Environment
+        run: |
+          echo "PIP_ROOT_USER_ACTION is $PIP_ROOT_USER_ACTION"
       - name: fix pip issue
         run: mkdir -p /github/home/.cache/pip
 
       - name: Debug Container
         run: |
-          export PIP_ROOT_USER_ACTION=ignore
           echo "PIP_ROOT_USER_ACTION is $PIP_ROOT_USER_ACTION"
           
       - name: Setup Python
@@ -34,6 +36,9 @@ jobs:
           python-version: ${{ matrix.python }}
           cache: 'pip'
           cache-dependency-path: 'requirements.txt'
+      - name: Debug After Setup
+        run: |
+          echo "PIP_ROOT_USER_ACTION is $PIP_ROOT_USER_ACTION"
   test2:
     runs-on: ubuntu-latest
     strategy:
