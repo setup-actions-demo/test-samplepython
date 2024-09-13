@@ -8,8 +8,7 @@ jobs:
   test1:
     runs-on: ubuntu-latest
     container: ubuntu:20.04
-    env:
-      PIP_ROOT_USER_ACTION: ignore  # Suppress pip root user warning
+    
     strategy:
       matrix:
         python: [3.12.6]
@@ -23,6 +22,8 @@ jobs:
         run: mkdir -p /github/home/.cache/pip
 
       - name: Setup Python
+        env:
+          PIP_ROOT_USER_ACTION: ignore  # Suppress pip root user warning
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
