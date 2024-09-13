@@ -28,6 +28,9 @@ jobs:
 
       - name: fix pip issue
         run: mkdir -p /github/home/.cache/pip
+      - name: Access release information
+        run: |
+          cat /etc/*release | grep ^ID
           
       - name: Setup Python
         uses: actions/setup-python@v5
