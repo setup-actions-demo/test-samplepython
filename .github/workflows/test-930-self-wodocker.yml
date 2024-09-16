@@ -14,8 +14,8 @@ jobs:
     steps:
       
       - uses: actions/checkout@v4
-      # - name: Change ownership
-      #   run: sudo chown -R root:root /home/azureuser/.cache/pip
+      - name: Change ownership
+        run: sudo chown -R azureuser:azureuser /home/azureuser/.cache/pip
       - name: Check permissions
         run: |
           ls -la /home/azureuser/.cache/pip
