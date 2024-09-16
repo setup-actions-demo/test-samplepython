@@ -14,14 +14,14 @@ jobs:
     steps:
       
       - uses: actions/checkout@v4
-      - name: Change ownership
-        run: sudo chown -R root:root /home/azureuser/.cache/pip
+      # - name: Change ownership
+      #   run: sudo chown -R root:root /home/azureuser/.cache/pip
       - name: Check permissions
         run: |
           ls -la /home/azureuser/.cache/pip
 
-      - name: Fix pip directory issue
-        run: mkdir -p /home/azureuser/.cache/pip
+      # - name: Fix pip directory issue
+      #   run: mkdir -p /home/azureuser/.cache/pip
            
       - name: Setup Python
         uses: actions/setup-python@v5
