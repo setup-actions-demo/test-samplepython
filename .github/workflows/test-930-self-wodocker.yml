@@ -10,10 +10,12 @@ jobs:
     runs-on: self-hosted
     strategy:
       matrix:
-        python: [3.12.4]
+        python: [3.12.3]
     steps:
       
       - uses: actions/checkout@v4
+      - name: Change ownership
+        run: sudo chown -R root:root /home/azureuser/.cache/pip
            
       - name: Setup Python
         uses: actions/setup-python@v5
