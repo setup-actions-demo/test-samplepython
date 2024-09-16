@@ -14,8 +14,6 @@ jobs:
     steps:
       
       - uses: actions/checkout@v4
-      - name: Change ownership
-        run: sudo chown -R root:root /home/azureuser/.cache/pip
            
       - name: Setup Python
         uses: actions/setup-python@v5
