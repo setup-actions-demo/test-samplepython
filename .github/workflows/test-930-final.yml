@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-22.04
     container:
       image: mcr.microsoft.com/devcontainers/python:1.1.15-3.8-bookworm
-      env:
-        PIP_ROOT_USER_ACTION: ignore
+      # env:
+      #   PIP_ROOT_USER_ACTION: ignore
     strategy:
       matrix:
         python: [3.11.6]
