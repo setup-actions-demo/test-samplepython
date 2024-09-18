@@ -61,13 +61,7 @@ jobs:
 
       - name: Check pip cache permissions
         run: ls -ld /home/azureuser
-      - name: Install lsb-release
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y lsb-release
-      - name: Create /etc/lsb-release
-        run: |
-          echo "DISTRIB_RELEASE=22.04" | sudo tee -a /etc/lsb-release
+
 
 
       - name: Setup Python
