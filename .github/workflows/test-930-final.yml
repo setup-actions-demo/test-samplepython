@@ -36,10 +36,10 @@ jobs:
         run: sudo chown -R $(whoami) /github/home
       - name: Check ownership
         run: ls -ld /github/home
-      - name: Install Python
+      - name: Force Reinstall pip
         run: |
-          sudo apt-get update
-          sudo apt-get install -y python3.11
+          python3 -m pip install --upgrade --force-reinstall pip --disable-pip-version-check --no-warn-script-location
+          python3 -m pip --version
       - name: Check Python Version
         run: python3 --version
       # - name: Setup Python
