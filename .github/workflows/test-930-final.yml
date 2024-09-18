@@ -10,7 +10,7 @@ jobs:
     container:
       image: mcr.microsoft.com/devcontainers/python:1.1.15-3.8-bookworm
       env:
-        PIP_ROOT_USER_ACTION: warn
+        PIP_ROOT_USER_ACTION: ignore
     strategy:
       matrix:
         python: [3.11.6]
