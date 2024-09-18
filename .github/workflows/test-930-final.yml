@@ -14,7 +14,19 @@ jobs:
         python: [3.11.6]
     steps:
       - uses: actions/checkout@v4
-      # - name: Ensure Sudo is Installed
+      - name: Change ownership of /github/home
+        run: sudo chown -R $(whoami) /github/home
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          # cache: 'pip'
+          # cache-dependency-path: 'requirements.txt'
+      # - name: Install Docker
+      #   run: |
+      #     apt-get update
+      #     apt-get install -y docker.io
+            # - name: Ensure Sudo is Installed
       #   run: |
       #     if ! command -v sudo &> /dev/null; then
       #       echo "sudo could not be found. Installing..."
@@ -35,13 +47,7 @@ jobs:
       #       # chown -R myuser:myuser /github/home/.cache
       #       # chmod -R 775 /github/home/.cache
       #       ls -la /github/home/.cache/pip
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python }}
-          # cache: 'pip'
-          # cache-dependency-path: 'requirements.txt'
-      # - name: Install Docker
-      #   run: |
-      #     apt-get update
-      #     apt-get install -y docker.io
+        #     - name: Change permissions
+        # run: |
+        #   sudo mkdir -p /github/home/.cache/pip
+        #   sudo chmod -R 777 /github/home/.cache/pip
