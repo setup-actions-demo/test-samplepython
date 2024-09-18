@@ -14,6 +14,12 @@ jobs:
         python: [3.11.6]
     steps:
       - uses: actions/checkout@v4
+      - name: Ensure Sudo is Installed
+        run: |
+          if ! command -v sudo &> /dev/null; then
+            echo "sudo could not be found. Installing..."
+            apt-get update && apt-get install -y sudo
+          fi
       - name: Change ownership of /github/home
         run: sudo chown -R $(whoami) /github/home
       - name: Setup Python
