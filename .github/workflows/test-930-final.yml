@@ -8,7 +8,7 @@ jobs:
   test1:
     runs-on: ubuntu-22.04
     container:
-      image: ubuntu:22.04
+      image: ubuntu:jammy
     strategy:
       matrix:
         python: [3.11.6]
@@ -40,7 +40,7 @@ jobs:
       #       # chmod -R 775 /github/home/.cache
       #       ls -la /github/home/.cache/pip
       - name: Setup Python
-        uses: priya-kinthali/setup-python@test-930
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
           # cache: 'pip'
