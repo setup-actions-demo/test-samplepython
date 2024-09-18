@@ -8,7 +8,7 @@ jobs:
   test1:
     runs-on: ubuntu-22.04
     container:
-      image: ubuntu:jammy
+      image: python
     strategy:
       matrix:
         python: [3.11.6]
@@ -23,10 +23,10 @@ jobs:
       - name: Check ownership
         run: ls -ld /github/home
 
-      - name: Change ownership of /github/home
-        run: sudo chown -R $(whoami) /github/home
-      - name: Check ownership
-        run: ls -ld /github/home
+      # - name: Change ownership of /github/home
+      #   run: sudo chown -R $(whoami) /github/home
+      # - name: Check ownership
+      #   run: ls -ld /github/home
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
