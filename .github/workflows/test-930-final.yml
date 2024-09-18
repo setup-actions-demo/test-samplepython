@@ -36,16 +36,11 @@ jobs:
       #   run: sudo chown -R $(whoami) /github/home
       # - name: Check ownership
       #   run: ls -ld /github/home
-      - name: Force Reinstall pip
-        run: |
-          python3 -m pip install --upgrade --force-reinstall pip --disable-pip-version-check --no-warn-script-location --no-cache-dir
-          python3 -m pip --version
-      - name: Check Python Version
-        run: python3 --version
-      # - name: Setup Python
-      #   uses: actions/setup-python@v5
-      #   with:
-      #     python-version: ${{ matrix.python }}
+
+      - name: Setup Python
+        uses: priya-kinthali/setup-python@test-930
+        with:
+          python-version: ${{ matrix.python }}
           # cache: 'pip'
           # cache-dependency-path: 'requirements.txt'
       # - name: Install Docker
