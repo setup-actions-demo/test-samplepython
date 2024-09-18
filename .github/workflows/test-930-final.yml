@@ -52,8 +52,11 @@ jobs:
       - name: Check pip cache permissions
         run: ls -ld /home/azureuser
 
-      - name: Change pip cache ownership to root
-        run: sudo chown -R root:root /home/azureuser
+      - name: Create test directory
+        run: |
+          mkdir /home/azureuser/test-dir
+          sudo chown root:root /home/azureuser/test-dir
+
       - name: Check pip cache permissions
         run: ls -ld /home/azureuser
 
