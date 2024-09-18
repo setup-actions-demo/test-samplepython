@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-22.04
     container:
       image: mcr.microsoft.com/devcontainers/python:1.1.15-3.8-bookworm
-      env:
-        PIP_ROOT_USER_ACTION: ignore
+      # env:
+      #   PIP_ROOT_USER_ACTION: ignore
     strategy:
       matrix:
         python: [3.11.6]
@@ -36,10 +36,16 @@ jobs:
         run: sudo chown -R $(whoami) /github/home
       - name: Check ownership
         run: ls -ld /github/home
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python }}
+      - name: Install Python
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3.11
+      - name: Check Python Version
+        run: python3 --version
+      # - name: Setup Python
+      #   uses: actions/setup-python@v5
+      #   with:
+      #     python-version: ${{ matrix.python }}
           # cache: 'pip'
           # cache-dependency-path: 'requirements.txt'
       # - name: Install Docker
