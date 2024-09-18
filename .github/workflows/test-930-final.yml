@@ -49,12 +49,14 @@ jobs:
         python: [3.11.6]
     steps:
       - uses: actions/checkout@v4
-      # - name: Check ownership
-      #   run: ls -ld /home/runner
-      # - name: Change ownership to root of /home/runner
-      #   run: sudo chown -R root /home/runner
-      # - name: Check ownership
-      #   run: ls -ld /home/runner
+      - name: Check pip cache permissions
+        run: ls -ld $(pip cache dir)
+
+      - name: Change pip cache ownership to root
+        run: sudo chown -R root:root $(pip cache dir)
+      - name: Check pip cache permissions
+        run: ls -ld $(pip cache dir)
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
