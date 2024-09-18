@@ -50,12 +50,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Check pip cache permissions
-        run: ls -ld $(pip cache dir)
+        run: ls -ld /home/azureuser
 
       - name: Change pip cache ownership to root
-        run: sudo chown -R root:root $(pip cache dir)
+        run: sudo chown -R root:root /home/azureuser
       - name: Check pip cache permissions
-        run: ls -ld $(pip cache dir)
+        run: ls -ld /home/azureuser
 
       - name: Setup Python
         uses: actions/setup-python@v5
