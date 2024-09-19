@@ -34,9 +34,10 @@ jobs:
           apt-get update
           apt-get install -y docker.io
 
-      - name: Inspect Docker container
+      - name: Run and inspect Docker container
         run: |
-            docker inspect --format '{{ .HostConfig.CapAdd }}' $HOSTNAME
+          docker run -d --name mycontainer ubuntu:jammy
+          docker inspect --format '{{ .Config.Env }}' mycontainer
       - name: Check ownership
         run: ls -ld /github/home
       # - name: Give all permissions to the current user
