@@ -50,7 +50,7 @@ jobs:
           docker exec ${{ steps.get_container_id.outputs.container_id }} /bin/bash -c 'source /root/.bashrc'
       - name: Run and inspect Docker container after setting variable
         run: |
-          docker inspect --format '{{ .Config.Env }}' ${{ env.container_id }}
+          docker inspect --format '{{ .Config.Env }}' ${{ steps.get_container_id.outputs.container_id }}
       - name: Check ownership
         run: ls -ld /github/home
       # - name: Give all permissions to the current user
