@@ -33,16 +33,23 @@ jobs:
         run: |
           apt-get update
           apt-get install -y docker.io
-
+      - name: Get container ID
+        id: get_container_id
+        run: |
+          container_id=$(docker ps -q -f ancestor=ubuntu:20.04)
+          full_container_id=$(docker inspect --format="{{.Id}}" $container_id)
+          echo "Container ID: $full_container_id"
+          echo "container_id=$full_container_id" >> $GITHUB_ENV
       - name: Run and inspect Docker container
         run: |
-          docker run -d -e PIP_ROOT_USER_ACTION=ignore --name cont ubuntu:jammy
-          docker inspect --format '{{ .Config.Env }}' cont
-      - name: Run and inspect Docker container
+          docker inspect --format '{{ .Config.Env }}' ${{ env.container_id }}
+      - name: Set environment variable in container
         run: |
-
-
-          docker inspect --format '{{ .Config.Env }}' cont
+          echo "export PIP_ROOT_USER_ACTION=ignore" | docker exec -i ${{ env.container_id }} /bin/bash -c 'cat >> /root/.bashrc'
+          docker exec ${{ env.container_id }} /bin/bash -c 'source /root/.bashrc'
+      - name: Run and inspect Docker container after setting variable
+        run: |
+          docker inspect --format '{{ .Config.Env }}' ${{ env.container_id }}
       - name: Check ownership
         run: ls -ld /github/home
       # - name: Give all permissions to the current user
