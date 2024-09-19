@@ -36,13 +36,13 @@ jobs:
 
       - name: Run and inspect Docker container
         run: |
-          docker run -d -e PIP_ROOT_USER_ACTION=${{ env.PIP_ROOT_USER_ACTION }} --name mycontainer ubuntu:jammy
-          docker inspect --format '{{ .Config.Env }}' mycontainer
+          docker run -d -e PIP_ROOT_USER_ACTION=${{ env.PIP_ROOT_USER_ACTION }} --name cont ubuntu:jammy
+          docker inspect --format '{{ .Config.Env }}' cont
       - name: Run and inspect Docker container
         run: |
 
-          docker run -d --name mycontainer ubuntu:jammy
-          docker inspect --format '{{ .Config.Env }}' mycontainer
+
+          docker inspect --format '{{ .Config.Env }}' cont
       - name: Check ownership
         run: ls -ld /github/home
       # - name: Give all permissions to the current user
