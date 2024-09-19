@@ -61,8 +61,12 @@ jobs:
 
       - name: Change ownership of /github/home
         run: sudo chown -R $(whoami) /github/home
+
       - name: Check ownership
         run: ls -ld /github/home
+      - name: Run and inspect Docker container
+        run: |
+          docker inspect --format '{{ .Config.Env }}' ${{ steps.get_container_id.outputs.container_id }}
 
       - name: Setup Python
         uses: actions/setup-python@v5
