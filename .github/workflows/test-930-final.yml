@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-22.04
     container:
       image: ubuntu:jammy
-      # env:
-      #   PIP_ROOT_USER_ACTION: ignore
+      env:
+        PIP_ROOT_USER_ACTION: ignore
     strategy:
       matrix:
         python: [3.11.6]
@@ -44,16 +44,16 @@ jobs:
       - name: Run and inspect Docker container
         run: |
           docker inspect --format '{{ .Config.Env }}' ${{ steps.get_container_id.outputs.container_id }}
-      - name: Set environment variable in running container
-        run: |
-          docker exec ${{ steps.get_container_id.outputs.container_id }} /bin/bash -c 'export PIP_ROOT_USER_ACTION=ignore'
+      # - name: Set environment variable in running container
+      #   run: |
+      #     docker exec ${{ steps.get_container_id.outputs.container_id }} /bin/bash -c 'export PIP_ROOT_USER_ACTION=ignore'
       - name: Check environment variable in running container
         run: |
           docker ps
           docker exec ${{ steps.get_container_id.outputs.container_id }} /bin/bash -c 'echo $PIP_ROOT_USER_ACTION'
-      - name: Check environment variable in running container
-        run: |
-          docker exec ${{ steps.get_container_id.outputs.container_id }} /bin/bash -c 'printenv PIP_ROOT_USER_ACTION'
+      # - name: Check environment variable in running container
+      #   run: |
+      #     docker exec ${{ steps.get_container_id.outputs.container_id }} /bin/bash -c 'printenv PIP_ROOT_USER_ACTION'
       - name: Check ownership
         run: ls -ld /github/home
       # - name: Give all permissions to the current user
