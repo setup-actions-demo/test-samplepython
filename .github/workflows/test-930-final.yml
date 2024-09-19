@@ -39,10 +39,11 @@ jobs:
           container_id=$(docker ps -q -f ancestor=ubuntu:jammy)
           full_container_id=$(docker inspect --format="{{.Id}}" $container_id)
           echo "Container ID: $full_container_id"
-          # echo "container_id=$full_container_id" >> $GITHUB_ENV
+          echo "::set-output name=container_id::$full_container_id"
+
       - name: Run and inspect Docker container
         run: |
-          docker inspect --format '{{ .Config.Env }}' ${{ env.container_id }}
+          docker inspect --format '{{ .Config.Env }}' ${{ steps.get_container_id.outputs.container_id }}
       - name: Set environment variable in container
         run: |
           echo "export PIP_ROOT_USER_ACTION=ignore" | docker exec -i ${{ env.container_id }} /bin/bash -c 'cat >> /root/.bashrc'
