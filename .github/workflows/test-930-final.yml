@@ -31,11 +31,11 @@ jobs:
       #     echo "DISTRIB_RELEASE=22.04" | tee -a /etc/lsb-release
       - name: Check ownership
         run: ls -ld /github/home
-      - name: Give all permissions to the current user
-        run: sudo chmod -R 777 /github/home
+      # - name: Give all permissions to the current user
+      #   run: sudo chmod -R 777 /github/home
 
-      # - name: Change ownership of /github/home
-      #   run: sudo chown -R $(whoami) /github/home
+      - name: Change ownership of /github/home
+        run: sudo chown -R $(whoami) /github/home
       - name: Check ownership
         run: ls -ld /github/home
 
