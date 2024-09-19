@@ -46,7 +46,7 @@ jobs:
           docker inspect --format '{{ .Config.Env }}' ${{ steps.get_container_id.outputs.container_id }}
       - name: Set environment variable in running container
         run: |
-          echo "export PIP_ROOT_USER_ACTION=ignore" | docker exec -i ${{ steps.get_container_id.outputs.container_id }} /bin/bash -c 'cat >> /root/.bashrc'
+          echo "export PIP_ROOT_USER_ACTION=ignore" | docker exec -i ${{ steps.get_container_id.outputs.container_id }} /bin/bash -lc 'cat >> /root/.bashrc'
           docker exec ${{ steps.get_container_id.outputs.container_id }} /bin/bash -c 'source /root/.bashrc'
       - name: Check environment variable in running container
         run: |
