@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
 jobs:
   test1:
-    runs-on: ubuntu:jammy
+    runs-on: ubuntu-22.04
     container:
-      image: mcr.microsoft.com/devcontainers/python:1.1.15-3.8-bookworm
+      image: ubuntu:jammy
       # env:
       #   PIP_ROOT_USER_ACTION: ignore
     strategy:
