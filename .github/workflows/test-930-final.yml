@@ -29,6 +29,14 @@ jobs:
       # - name: Create /etc/lsb-release
       #   run: |
       #     echo "DISTRIB_RELEASE=22.04" | tee -a /etc/lsb-release
+      - name: Install Docker
+        run: |
+          apt-get update
+          apt-get install -y docker.io
+
+      - name: Inspect Docker container
+        run: |
+            docker inspect --format '{{ .HostConfig.CapAdd }}' $HOSTNAME
       - name: Check ownership
         run: ls -ld /github/home
       # - name: Give all permissions to the current user
