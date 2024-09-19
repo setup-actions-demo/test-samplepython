@@ -74,7 +74,7 @@ jobs:
           python-version: ${{ matrix.python }}
       - name: Upgrade pip in Docker container
         run: |
-          docker exec -it ${{ steps.get_container_id.outputs.container_id }} /bin/bash -c "PIP_ROOT_USER_ACTION=ignore python -m pip install --upgrade pip"
+          docker exec ${{ steps.get_container_id.outputs.container_id }} /bin/bash -c "PIP_ROOT_USER_ACTION=ignore python -m pip install --upgrade pip"
 
   # test2:
   #   runs-on: self-hosted
