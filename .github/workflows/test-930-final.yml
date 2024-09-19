@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-22.04
     container:
       image: ubuntu:jammy
-      env:
-        PIP_ROOT_USER_ACTION: ignore
+      # env:
+      #   PIP_ROOT_USER_ACTION: ignore
     strategy:
       matrix:
         python: [3.11.6]
@@ -38,8 +38,8 @@ jobs:
         run: |
           container_id=$(docker ps -q -f ancestor=ubuntu:jammy)
           full_container_id=$(docker inspect --format="{{.Id}}" $container_id)
-          echo "Container ID: $full_container_id"
-          echo "container_id=$full_container_id" >> $GITHUB_ENV
+          # echo "Container ID: $full_container_id"
+          # echo "container_id=$full_container_id" >> $GITHUB_ENV
       - name: Run and inspect Docker container
         run: |
           docker inspect --format '{{ .Config.Env }}' ${{ env.container_id }}
