@@ -36,7 +36,7 @@ jobs:
 
       - name: Run and inspect Docker container
         run: |
-          docker run -d -e PIP_ROOT_USER_ACTION=${{ env.PIP_ROOT_USER_ACTION }} --name cont ubuntu:jammy
+          docker run -d -e PIP_ROOT_USER_ACTION=ignore --name cont ubuntu:jammy
           docker inspect --format '{{ .Config.Env }}' cont
       - name: Run and inspect Docker container
         run: |
