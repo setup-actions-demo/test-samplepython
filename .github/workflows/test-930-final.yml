@@ -74,7 +74,7 @@ jobs:
       #     python-version: ${{ matrix.python }}
       - name: Check installed pip version
         run: |
-          docker exec ${{ steps.get_container_id.outputs.container_id }} /bin/bash -c "dpkg --get-selections | grep -i pip"
+          docker exec ${{ steps.get_container_id.outputs.container_id }} /bin/bash -c "dpkg --get-selections | { grep -i pip || true; }"
       - name: List all installed packages
         run: |
           docker exec ${{ steps.get_container_id.outputs.container_id }} /bin/bash -c "apt list --installed"
