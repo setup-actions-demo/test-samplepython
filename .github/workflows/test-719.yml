@@ -22,6 +22,10 @@ jobs:
         run: |
           apt-get update
           apt-get install -y docker.io
+      - name: Install lsb-release
+        run: |
+          apt-get update
+          apt-get install -y lsb-release
       - name: Change ownership of /github/home
         run: sudo chown -R $(whoami) /github/home
       - name: Setup Python
