@@ -1,32 +1,42 @@
-name: Test PR Changes related to AGENT_TOOLSDIRECTORY on macOS
-on: 
-  # push:
-  #   branches:
-  #     - main
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy ASP.Net Core app to Azure Web App - TestDotnetPublishfromAzure
+
+on:
+  push:
+    branches:
+      - test-icm-dotnet
   workflow_dispatch:
+
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-12, macos-latest, macos-13, self-hosted]
-        python-version: ['3.11.9']
-
+    runs-on: self-hosted
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Set up Python
-        uses: priya-kinthali/setup-python@test-708
-        with:
-          python-version: ${{ matrix.python-version }}
-          cache: 'pip'  
-        env:
-          AGENT_TOOLSDIRECTORY: /Users/lakshmipriya/hostedtoolcache
-      - name: Check Python version
-        run: python --version
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+      - uses: actions/checkout@v4
 
-      
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
+
+      - name: dotnet publish
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v4
+        with:
+          name: .net-app
+          path: ${{env.DOTNET_ROOT}}/myapp
+
+  
+
+
+
+
+
+
+
