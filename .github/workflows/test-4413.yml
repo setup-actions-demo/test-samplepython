@@ -14,4 +14,4 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Install Python dependency
-      run: pip install requests
+      run: pip install some-nonexistent-package-xyz
