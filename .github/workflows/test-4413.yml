@@ -1,0 +1,17 @@
+name: Reproduce Python 3.12 Externally Managed Error
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test-python:
+    runs-on: ubuntu-24.04
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Python dependency
+      run: pip install requests
