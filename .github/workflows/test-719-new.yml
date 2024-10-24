@@ -7,7 +7,7 @@ on:
 jobs:
   Test:
     runs-on: ubuntu-latest
-    container: debian:12
+    container: python:3.11.1
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -27,13 +27,13 @@ jobs:
           apt-get install -y lsb-release
       - name: Change ownership of /github/home
         run: sudo chown -R $(whoami) /github/home
-      - name: Clear Python cache
-        run: |
-          sudo rm -rf /__t/Python
+      # - name: Clear Python cache
+      #   run: |
+      #     sudo rm -rf /__t/Python
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.11.5'
           cache: 'pip'
           cache-dependency-path: 'requirements.txt'
       - name: Install dependencies
