@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 jobs:
   Test:
-    runs-on: ubuntu-latest
+    runs-on: amd64/rust
     container: ubuntu:jammy
     steps:
       - name: Checkout repository
@@ -27,9 +27,9 @@ jobs:
           apt-get install -y lsb-release
       - name: Change ownership of /github/home
         run: sudo chown -R $(whoami) /github/home
-      - name: Clear Python cache
-        run: |
-          sudo rm -rf /__t/Python
+      # - name: Clear Python cache
+      #   run: |
+      #     sudo rm -rf /__t/Python
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
