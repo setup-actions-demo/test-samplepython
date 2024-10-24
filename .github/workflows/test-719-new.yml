@@ -1,8 +1,8 @@
 name: Tests
 on:
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
 jobs:
   Test:
@@ -17,9 +17,9 @@ jobs:
             echo "sudo could not be found. Installing..."
             apt-get update && apt-get install -y sudo
           fi
-      - name: Clear Python cache
-        run: |
-          sudo rm -rf /__t/Python
+      # - name: Clear Python cache
+      #   run: |
+      #     sudo rm -rf /__t/Python
       - name: Install Docker
         run: |
           apt-get update
