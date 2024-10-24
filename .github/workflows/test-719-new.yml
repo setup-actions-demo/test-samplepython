@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
 jobs:
   Test:
-    runs-on: amd64/rust
-    container: ubuntu:jammy
+    runs-on: ubuntu-latest
+    container: amd64/rust
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
