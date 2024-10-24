@@ -7,7 +7,8 @@ on:
 jobs:
   Test:
     runs-on: ubuntu-latest
-    container: amd64/rust:bullseye
+    container:
+      image: amd64/rust:bullseye 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
