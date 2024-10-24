@@ -7,7 +7,7 @@ on:
 jobs:
   Test:
     runs-on: ubuntu-latest
-    container: amd64/rust
+    container: amd64/rust:bullseye
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -27,9 +27,9 @@ jobs:
           apt-get install -y lsb-release
       - name: Change ownership of /github/home
         run: sudo chown -R $(whoami) /github/home
-      - name: Clear Python cache
-        run: |
-          sudo rm -rf /__t/Python
+      # - name: Clear Python cache
+      #   run: |
+      #     sudo rm -rf /__t/Python
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
