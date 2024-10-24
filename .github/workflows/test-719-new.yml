@@ -7,7 +7,7 @@ on:
 jobs:
   Test:
     runs-on: ubuntu-latest
-    container: python:3.11.1
+    container: ubuntu:jammy
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
