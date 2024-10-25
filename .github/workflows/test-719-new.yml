@@ -8,7 +8,7 @@ jobs:
   Test:
     runs-on: ubuntu-latest
     container:
-      image: amd64/rust:bullseye 
+      image: debian:12
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
