@@ -25,10 +25,10 @@ jobs:
 
       - name: Install temporary Python
         run: |
-          arch -x86_64 brew install python@3.8
-          python3.8 -m ensurepip
-          python3.8 -m pip install --upgrade pip
-          python3.8 -m pip install certifi
+          arch -x86_64 /usr/local/bin/brew install python@3.9
+          python3.9 -m ensurepip
+          python3.9 -m pip install --upgrade pip
+          python3.9 -m pip install certifi
 
       - name: Set up Python
         uses: actions/setup-python@v5
