@@ -1,14 +1,10 @@
-[tool.poetry]
-name = "sample-python"
+[project]
+name = "setup-python-example"
 version = "0.1.0"
-description = "test"
-authors = ["Your Name <you@example.com>"]
+description = "Add your description here"
 readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
 
-[tool.poetry.dependencies]
-python = "^3.8"
-
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[project.scripts]
+example = "hello:main"
