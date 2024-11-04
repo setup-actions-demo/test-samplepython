@@ -22,11 +22,11 @@ jobs:
       #     echo "CPPFLAGS=-I/usr/local/opt/openssl/include" >> $GITHUB_ENV
       #     echo "PATH=/usr/local/opt/openssl/bin:$PATH" >> $GITHUB_ENV
       - name: Set up Python
-        # uses: actions/setup-python@v5
-        uses: priya-kinthali/setup-python@test-708-pr
+        uses: actions/setup-python@v5
+        # uses: priya-kinthali/setup-python@test-708-pr
         with:
           python-version: ${{ matrix.python-version }}
-          cache: 'pip'  
+          # cache: 'pip'  
       - name: Verify SSL support
         run: python3 -m ssl
       - name: Check Python version
