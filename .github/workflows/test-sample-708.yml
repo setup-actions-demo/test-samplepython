@@ -1,45 +1,45 @@
-# name: Test PR Changes related to AGENT_TOOLSDIRECTORY on macOS
-# on:
-#   push:
-#     branches:
-#       - main
-#   workflow_dispatch:
-# jobs:
-#   build:
-#     runs-on: ${{ matrix.os }}
-#     strategy:
-#       fail-fast: false
-#       matrix:
-#         os: [self-hosted]
-#         python-version: ['3.9']
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v4
+name: Test PR Changes related to AGENT_TOOLSDIRECTORY on macOS
+on:
+  # push:
+  #   branches:
+  #     - main
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [self-hosted]
+        python-version: ['3.9']
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-#       - name: Install OpenSSL
-#         run: |
-#           arch -x86_64 brew install openssl
-#           echo "LDFLAGS=-L/usr/local/opt/openssl/lib" >> $GITHUB_ENV
-#           echo "CPPFLAGS=-I/usr/local/opt/openssl/include" >> $GITHUB_ENV
-#           echo "PATH=/usr/local/opt/openssl/bin:$PATH" >> $GITHUB_ENV
+      - name: Install OpenSSL
+        run: |
+          arch -x86_64 brew install openssl
+          echo "LDFLAGS=-L/usr/local/opt/openssl/lib" >> $GITHUB_ENV
+          echo "CPPFLAGS=-I/usr/local/opt/openssl/include" >> $GITHUB_ENV
+          echo "PATH=/usr/local/opt/openssl/bin:$PATH" >> $GITHUB_ENV
 
-#       - name: Install temporary Python
-#         run: |
-#           arch -x86_64 /usr/local/bin/brew install python@3.9
-#           python3.9 -m ensurepip
-#           python3.9 -m pip install --upgrade pip
-#           python3.9 -m pip install certifi
+      - name: Install temporary Python
+        run: |
+          arch -x86_64 /usr/local/bin/brew install python@3.9
+          python3.9 -m ensurepip
+          python3.9 -m pip install --upgrade pip
+          python3.9 -m pip install certifi
 
-#       - name: Set up Python
-#         uses: actions/setup-python@v5
-#         with:
-#           python-version: ${{ matrix.python-version }}
-#           cache: 'pip'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
 
-#       - name: Check Python version
-#         run: python --version
+      - name: Check Python version
+        run: python --version
 
-#       - name: Install dependencies
-#         run: |
-#           python -m pip install --upgrade pip
-#           pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
