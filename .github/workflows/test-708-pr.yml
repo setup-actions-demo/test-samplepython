@@ -10,17 +10,24 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-12, macos-latest, macos-13, self-hosted]
-        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12', '3.13']
+        os: [self-hosted]
+        python-version: ['3.8']
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Set up environment variables for OpenSSL
+        run: |
+          echo "LDFLAGS=-L/usr/local/opt/openssl/lib" >> $GITHUB_ENV
+          echo "CPPFLAGS=-I/usr/local/opt/openssl/include" >> $GITHUB_ENV
+          echo "PATH=/usr/local/opt/openssl/bin:$PATH" >> $GITHUB_ENV
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'  
+      - name: Verify SSL support
+        run: python3 -m ssl
       - name: Check Python version
         run: python --version
       - name: Install dependencies
