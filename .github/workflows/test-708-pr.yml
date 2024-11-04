@@ -1,27 +1,26 @@
 name: Test PR Changes related to AGENT_TOOLSDIRECTORY on macOS
 on: 
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [macos-12, macos-latest, macos-13, self-hosted]
-        python-version: ['3.11.9']
+        python-version: ['3.7', '3.8', '3.9', '3.10', '3.11', '3.12', '3.13']
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Set up Python
-        uses: priya-kinthali/setup-python@test-708
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'  
-        env:
-          AGENT_TOOLSDIRECTORY: /Users/lakshmipriya/hostedtoolcache
       - name: Check Python version
         run: python --version
       - name: Install dependencies
