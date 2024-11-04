@@ -10,15 +10,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-13]
+        os: [self-hosted]
         python-version: ['3.8.15']
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Install OpenSSL
-        run: |
-          brew install openssl
-          brew link --force openssl
+      # - name: Install OpenSSL
+      #   run: |
+      #     brew install openssl
+      #     brew link --force openssl
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
