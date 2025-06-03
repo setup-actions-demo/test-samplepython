@@ -9,8 +9,8 @@ on:
 jobs:
   test-python310:
     runs-on: [self-hosted]
-    env:
-      AGENT_TOOLSDIRECTORY: "C:\\hostedtoolcache\\windows"
+    # env:
+    #   AGENT_TOOLSDIRECTORY: "C:\\hostedtoolcache\\windows"
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
