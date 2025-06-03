@@ -1,4 +1,4 @@
-name: Test Setup Python 3.10 #issue-1116-after restart
+name: Test Setup Python 3.10 #issue-1116-after manual installation
 
 on:
   push:
