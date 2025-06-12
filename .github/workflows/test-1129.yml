@@ -22,6 +22,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           pip-version: 23
+          cache: 'pip'
 
       - name: Verify pip version
         run: pip --version
