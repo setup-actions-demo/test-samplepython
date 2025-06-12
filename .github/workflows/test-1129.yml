@@ -1,0 +1,29 @@
+name: Test pip-version input 
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+  jobs:
+  test-versions:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [self-hosted]
+        python-version: ['3.13', '3.12']
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: priyagupta108/setup-python@pip-version-input
+        with:
+          python-version: ${{ matrix.python-version }}
+          pip-version: 23
+
+      - name: Verify pip version
+        run: pip --version
+
+      - run: pip install -r requirements.txt    
